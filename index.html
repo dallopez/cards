@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by dalila lopez</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="flashcards-app">
+<div><input v-model="questionIn"
+            type='text' placeholder="Question"/>  
+<input v-model="answerIn"  
+            type='text' placeholder="Answer"/>
+<input type="radio" id="Science" value="science" v-model="categoryIn">
+<label for="science">Science</label>
+<br>
+<input type="radio" id="History" value="history" v-model="categoryIn">
+<label for="history">History</label>
+<br>
+<input type="radio" id="Math" value="math" v-model="categoryIn">
+<label for="math">Math</label>
+<br>
+<span>Category: {{ categoryIn }}</span></div>
+ <div> <button v-on:click=newCard(questionIn,answerIn,categoryIn)>Submit Card</button>
+  </div>
+<div v-for="(card, index) in cards" class="card" v-on:click="flipCard(index)">
+    <div class="top" v-bind:class="card.category"></div>
+    <div class="side1" v-bind:class="{hide: card.flipped}">{{card.question}}</div>
+    <div class="side2" v-bind:class="{hide: !card.flipped}">{{card.answer}}</div>
+  </div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
